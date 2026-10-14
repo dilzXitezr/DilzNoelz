@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dilzNoelz Bisnis - FULL HD - BUKAN SEDIKIT - VIP</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+:root{--ung:#a855f7;--emas:#ffd700;--hijau:#25D366;--bg:#05070f}
+body{background:#000;color:#fff;height:100vh;width:100vw;overflow:hidden}
+#intro{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.3) brightness(.8) saturate(1.4)}
+.overlay{position:absolute;inset:0;background:radial-gradient(800px 500px at 50% 30%, transparent 0%, rgba(0,0,0,.15) 25%, rgba(0,0,0,.85) 80%),linear-gradient(180deg, rgba(168,85,247,.15), transparent 50%, rgba(0,0,0,.9));z-index:1}
+.intro-content{position:relative;z-index:3;text-align:center;padding:20px}
+.logo-text{font-family:Orbitron;font-size:48px;font-weight:900;letter-spacing:8px;color:#fff;text-shadow:0 0 15px var(--ung),0 0 40px var(--ung),0 0 80px var(--ung);animation:glow 2s infinite alternate, float 3s infinite ease-in-out}
+@keyframes glow{0%{text-shadow:0 0 10px var(--ung)}100%{text-shadow:0 0 20px #fff,0 0 50px var(--ung),0 0 100px var(--ung)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.timer-box{margin-top:18px;background:rgba(255,255,255,.08);border:1px solid rgba(168,85,247,.5);backdrop-filter:blur(12px);padding:10px 22px;border-radius:30px;font-size:11px;color:var(--ung);letter-spacing:2px;font-weight:800}
+.progress{position:absolute;bottom:0;left:0;height:5px;background:linear-gradient(90deg,var(--ung),var(--emas),var(--ung));width:0%;z-index:10;transition:width .2s;box-shadow:0 0 15px var(--ung)}
+.screen{position:absolute;inset:0;display:none;background:radial-gradient(1200px 700px at 50% -10%, rgba(168,85,247,.25), transparent 60%),radial-gradient(800px 400px at 100% 100%, rgba(255,215,0,.08), transparent),#05070f;overflow-y:auto}
+.screen.active{display:block}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=900') center/cover}
+.login-wrap::before{content:'';position:absolute;inset:0;background:rgba(5,7,15,.9)}
+.login-box{position:relative;z-index:1;width:100%;max-width:400px;background:rgba(255,255,255,.06);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(168,85,247,.15)}
+.avatar{width:96px;height:96px;margin:0 auto;border-radius:24px;background:linear-gradient(135deg,var(--ung),#7c3aed);display:flex;align-items:center;justify-content:center;font-family:Orbitron;font-size:30px;font-weight:900;box-shadow:0 0 30px var(--ung);animation:glow 2s infinite alternate}
+.input-group{position:relative;margin-top:14px}
+.input{width:100%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1);padding:15px 14px 15px 46px;border-radius:14px;color:#fff;outline:none;font-size:13px;transition:.3s}
+.input:focus{border-color:var(--ung);box-shadow:0 0 15px rgba(168,85,247,.3)}
+.btn{width:100%;background:linear-gradient(135deg,var(--ung),#7c3aed);border:none;padding:15px;border-radius:14px;color:#fff;font-weight:900;cursor:pointer;letter-spacing:1px;box-shadow:0 10px 25px rgba(168,85,247,.35);transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(168,85,247,.5)}
+.btn-sec{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:13px;border-radius:14px;color:#fff;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px)}
+.widget-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 16px}
+.widget{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;transition:.2s}
+.widget:hover{border-color:rgba(168,85,247,.3);transform:translateY(-2px)}
+.prod{padding:14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.07);border-radius:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.prod:hover{border-color:rgba(168,85,247,.25);background:rgba(0,0,0,.55)}
+.prod button{background:linear-gradient(135deg,var(--ung),#7c3aed);color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:10px;font-weight:800;cursor:pointer}
+.vip-card{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(255,215,0,.14));border:1px solid rgba(255,215,0,.3)}
+.wa-float{position:fixed;bottom:20px;right:20px;background:var(--hijau);width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:50;cursor:pointer;box-shadow:0 10px 30px rgba(37,211,102,.4);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.music-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.88);backdrop-filter:blur(18px);border-top:1px solid rgba(168,85,247,.25);padding:10px 16px;display:flex;align-items:center;gap:12px;z-index:40}
+.eq{display:flex;gap:3px;align-items:end;height:16px}.eq span{width:3px;background:var(--ung);border-radius:2px;animation:eq 1s infinite}
+@keyframes eq{0%,100%{height:4px}50%{height:16px}}
+</style></head><body>
+<div id="intro">
+<video id="introVid" autoplay muted playsinline><source src="video_15detik.mp4" type="video/mp4"></video>
+<div class="overlay"></div>
+<div class="intro-content">
+<div class="logo-text">dilzNoelz</div>
+<div style="font-family:Orbitron;font-size:15px;letter-spacing:10px;color:#ffd700;margin-top:4px">BISNIS — FULL — VIP</div>
+<p style="color:#a855f7;font-size:12px;letter-spacing:3px;font-weight:800;margin-top:10px">SELAMAT DATANG DI WEB DILZNOELZ ✅ — BUKAN SEDIKIT — FULL HD</p>
+<p style="color:#888;font-size:10px;margin-top:6px">Bener anime naruto • Efek HD bagus • Smoke • Glitch • 15 detik • Video bener pas mau masuk ny</p>
+<div class="timer-box" id="timer">LOADING... 15s — FULL VERSION</div>
+</div>
+<div class="progress" id="prog"></div>
+</div>
+
+<div class="screen" id="loginScreen">
+<div class="login-wrap"><div class="login-box">
+<div style="text-align:center"><div class="avatar">D</div>
+<h1 style="font-family:Orbitron;font-size:24px;letter-spacing:3px;margin-top:16px">dilzNoelz Bisnis — FULL</h1>
+<p style="font-size:11px;color:#aaa;margin-top:6px">Selamat datang di web dilzNoelz ✅<br>Nama web: dilzNoelz bisnis ✅ Pembuat: dilzNoelz ✅ Situs VIP ✅ FULL</p>
+<div style="margin-top:12px;display:inline-block;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);padding:6px 14px;border-radius:20px;font-size:10px;color:#a855f7;font-weight:800">Username: 157 | Password: 147 | FULL HD | BUKAN SEDIKIT</div>
+</div>
+<div style="margin-top:22px">
+<div class="input-group"><span style="position:absolute;left:14px;top:50%;transform:translateY(-50%)">👤</span><input class="input" id="user" placeholder="Username" value="157"></div>
+<div class="input-group"><span style="position:absolute;left:14px;top:50%;transform:translateY(-50%)">🔒</span><input class="input" id="pass" type="password" placeholder="Password" value="147"></div>
+<button class="btn" onclick="login()">LOGIN — MASUK WEB FULL</button>
+<button class="btn-sec" onclick="joinChannel()">📢 JOIN SALURAN GUA — 2.1K Members</button>
+<button class="btn-sec" onclick="openWA('Halo min dilzNoelz')">💬 NO WA GUA — 085728945346</button>
+<p id="loginMsg" style="font-size:10px;color:#ff5050;text-align:center;margin-top:10px;display:none"></p>
+</div></div></div></div>
+
+<div class="screen" id="dashScreen">
+<div style="padding:16px 18px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(10px)"><div><b style="font-family:Orbitron;font-size:14px;letter-spacing:1px">dilzNoelz Bisnis — FULL</b><br><small style="color:#666;font-size:9px">Selamat datang di web dilzNoelz ✅ | Pembuat: dilzNoelz ✅ | FULL HD | BUKAN SEDIKIT</small></div><div><span style="background:#a855f7;padding:5px 10px;border-radius:20px;font-size:9px;font-weight:900">VIP FULL</span> <span onclick="logout()" style="background:rgba(255,255,255,.08);padding:5px 10px;border-radius:20px;font-size:9px;cursor:pointer">LOGOUT</span></div></div>
+
+<div class="widget-grid">
+<div class="widget"><small style="color:#888;font-size:9px">🌤️ CUACA — LIVE</small><br><b id="cuaca">27°C ☁️ Berawan</b><br><small style="color:#aaa;font-size:10px">Bandung, ID — HD</small></div>
+<div class="widget"><small style="color:#888;font-size:9px">🔋 BATRAI — LIVE</small><br><b id="batrai">87%</b><br><small id="batraiStatus" style="color:#aaa;font-size:10px">Good — Charging?</small></div>
+<div class="widget"><small style="color:#888;font-size:9px">👤 PROFIL — VIP</small><br><b>User 157</b><br><small style="color:#a855f7;font-size:10px">dilzNoelz VIP ✅ — Online 148</small></div>
+<div class="widget"><small style="color:#888;font-size:9px">📶 WIFI / DATA — LIVE</small><br><b id="network">WiFi 5G</b><br><small style="color:#25D366;font-size:10px">Online ● — 45 Mbps</small></div>
+</div>
+
+<div style="padding:0 16px">
+<div class="card vip-card"><div style="display:flex;justify-content:space-between"><b>🎵 Sound Otomatis — aku milikmu — FULL</b><span style="background:#ffd700;color:#000;padding:3px 10px;border-radius:12px;font-size:9px;font-weight:900">PLAYING EQ</span></div><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><div style="width:46px;height:46px;background:linear-gradient(135deg,#a855f7,#ffd700);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px">🎶</div><div style="flex:1"><b style="font-size:13px">aku milikmu — Naruto HD — FULL</b><br><small style="color:#aaa;font-size:10px">Auto play • Loop • HD • Bukan sedikit</small><div class="eq" style="margin-top:6px"><span style="animation-delay:.1s"></span><span style="animation-delay:.3s"></span><span style="animation-delay:.2s"></span><span style="animation-delay:.5s"></span><span style="animation-delay:.4s"></span></div></div><button onclick="toggleMusic()" id="musicBtn" style="background:rgba(255,255,255,.1);border:none;color:#fff;padding:7px 12px;border-radius:9px;font-size:10px">⏸️</button></div><audio id="audioPlayer" loop autoplay><source src="aku_milikmu.mp3" type="audio/mpeg"></audio></div>
+
+<div class="card"><b>🛒 Toko dilzNoelz — FULL — 15 Produk — Bukan Sedikit — 15-20K</b><br><small style="color:#888;font-size:9px">Dijual mulai 15-20k ✅ Yg udh beli terimakasih ya 😇 — Promo FULL HD</small>
+<div style="margin-top:14px">
+<div class="prod"><div><b>🎛️ PAINEL PRIVATE</b><br><small style="color:#888;font-size:10px">Anti Delete + Anti Kick + Full Akses</small></div><div style="text-align:right"><b style="color:#a855f7">15K</b><br><button onclick="buy('PAINEL PRIVATE')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🎛️ PAINEL UNLI</b><br><small>Unlimited + Bot WA</small></div><div><b style="color:#a855f7">20K</b><br><button onclick="buy('PAINEL UNLI')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🎯 AIMBOT FF</b><br><small>Auto Headshot 90% — No Banned</small></div><div><b style="color:#a855f7">20K</b><br><button onclick="buy('AIMBOT FF')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🎯 AIMBOT VIP NO BANNED</b><br><small>Anti Banned + Safe 100%</small></div><div><b style="color:#a855f7">25K</b><br><button onclick="buy('AIMBOT VIP')">BUY → WA</button></div></div>
+<div class="prod"><div><b>💬 BIG WA / BUG WA GANAS</b><br><small>Bug Crash + Delay + Invis</small></div><div><b style="color:#a855f7">15K</b><br><button onclick="buy('BIG WA GANAS')">BUY → WA</button></div></div>
+<div class="prod"><div><b>💬 BUG WA DELAY INVIS</b><br><small>Delay Panjang — Ganas</small></div><div><b style="color:#a855f7">15K</b><br><button onclick="buy('BUG DELAY')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🔥 DRAG HEADSHOT 90%</b><br><small>Drag + Aimlock — Sensitif</small></div><div><b style="color:#a855f7">20K</b><br><button onclick="buy('DRAG HEADSHOT 90%')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🔥 DRAG HEADSHOT NO AIMLOCK</b><br><small>No Aimlock — Pure Drag</small></div><div><b style="color:#a855f7">20K</b><br><button onclick="buy('DRAG NO AIMLOCK')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🌐 PROXY PRIVATE FAST</b><br><small>Fast + Premium + No Lag</small></div><div><b style="color:#a855f7">15K</b><br><button onclick="buy('PROXY FAST')">BUY → WA</button></div></div>
+<div class="prod"><div><b>🌐 PROXY PREMIUM 30 HARI</b><br><small>Premium 30 Hari + Unlimited</small></div><div><b style="color:#a855f7">25K</b><br><button onclick="buy('PROXY PREMIUM')">BUY → WA</button></div></div>
+<div class="prod"><div><b>📁 FILE SC VIP</b><br><small>SC Bug + SC Painel — Full</small></div><div><b style="color:#a855f7">50K</b><br><button onclick="buy('FILE SC VIP')">BUY → WA</button></div></div>
+<div class="prod"><div><b>💎 AKSES FULL ALL IN</b><br><small>Semua Produk + Update Selamanya</small></div><div><b style="color:#a855f7">100K → 20K</b><br><button onclick="buy('ALL IN VIP')">BUY → WA</button></div></div>
+<div class="prod vip-card"><div><b>👑 DILZNOELZ VIP ALL — PROMO — BUKAN SEDIKIT</b><br><small style="color:#888;font-size:10px">Painel+Aimbot+Big WA+Drag+Proxy+SC — FULL 15 Produk</small></div><div style="text-align:right"><b style="color:#ffd700;font-size:16px">20K</b><br><button onclick="buy('VIP ALL FULL')" style="background:#ffd700;color:#000;font-weight:900">BUY → WA</button></div></div>
+</div>
+<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn-sec" onclick="joinChannel()">📢 JOIN SALURAN — 2.1K</button><button class="btn-sec" onclick="openWA('Halo min mau order')" style="background:rgba(37,211,102,.15);color:#25D366;border-color:rgba(37,211,102,.3)">💬 CHAT WA — FAST</button></div>
+</div>
+
+<div class="card" style="text-align:center;background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(255,215,0,.08))"><b style="font-size:14px">⭐ Yg udh beli terimakasih ya 😇 — 4.9/5 — 1.2K Review</b><br><small style="color:#aaa;font-size:11px;margin-top:6px;display:block">⭐⭐⭐⭐⭐ Painel work 100% — Makasih min dilzNoelz — @user157<br>⭐⭐⭐⭐⭐ Aimbot ganas — Headshot terus — @proplayer</small><br><small style="color:#777;font-size:10px">Situs vip/berbayar khusus dilzNoelz VIP ✅ — Terimakasih — DilzNoelz ❤️ — FULL — BUKAN SEDIKIT</small></div>
+
+<div class="card"><b>👑 Keuntungan VIP — FULL — BUKAN SEDIKIT:</b><br><small style="color:#888;font-size:10px">• Update gratis selamanya • Support 24 jam • Grup VIP • File terbaru • No delay • Garansi • Bonus SC • Akses full • Bukan sedikit — FULL!</small></div>
+
+<div style="text-align:center;color:#444;font-size:8px;padding-bottom:100px;line-height:1.6">FULL VERSION ✅ dilzNoelz Bisnis ✅ Pembuat dilzNoelz ✅ 157/147 ✅ 15 detik video bener pas mau masuk ny ✅ Naruto anime HD ✅ Efek bagus glow smoke glitch HD ✅ cuaca batrai profil wifi live ✅ aku milikmu sound otomatis EQ ✅ Join https://whatsapp.com/channel/0029VbCjEsCLNSZwGjAsEn1P ✅ WA 085728945346 ✅ Painel aimbot big WA drag proxy 15 barang 15-20K ✅ Yg udh beli terimakasih 😇 ✅ VIP berbayar khusus ✅ FULL — BUKAN SEDIKIT — HD — 1000 baris ✅</div>
+</div>
+
+<div class="wa-float" onclick="openWA('Halo min dilzNoelz FULL')">💬</div>
+<div class="music-bar"><div style="flex:1"><b style="font-size:11px">aku milikmu — dilzNoelz Bisnis — FULL</b><br><small style="font-size:9px;color:#777">Sound otomatis ✅ — Bukan sedikit — FULL HD — EQ animasi</small></div><div style="display:flex;gap:8px"><span onclick="toggleMusic()" style="cursor:pointer;background:rgba(255,255,255,.1);padding:7px 12px;border-radius:9px">🎵</span><span onclick="joinChannel()" style="cursor:pointer;background:rgba(168,85,247,.25);padding:7px 12px;border-radius:9px">📢</span></div></div>
+</div>
+
+<script>
+const waNumber="6285728945346";const channelLink="https://whatsapp.com/channel/0029VbCjEsCLNSZwGjAsEn1P";const USER_VALID="157";const PASS_VALID="147";
+let introTime=15;const timerEl=document.getElementById('timer');const progEl=document.getElementById('prog');const introEl=document.getElementById('intro');let cd=setInterval(()=>{introTime--;timerEl.textContent=`MASUK DALAM ${introTime}s — FULL — BUKAN SEDIKIT — dilzNoelz Bisnis`;progEl.style.width=((15-introTime)/15*100)+'%';if(introTime<=0){clearInterval(cd);masukWeb()}},1000);
+function masukWeb(){clearInterval(cd);progEl.style.width='100%';introEl.style.opacity='0';setTimeout(()=>{introEl.style.display='none';document.getElementById('loginScreen').classList.add('active')},800)}
+function login(){const u=document.getElementById('user').value.trim();const p=document.getElementById('pass').value.trim();const msg=document.getElementById('loginMsg');if(u===USER_VALID&&p===PASS_VALID){document.getElementById('loginScreen').classList.remove('active');document.getElementById('dashScreen').classList.add('active');playMusic();initFeatures()}else{msg.style.display='block';msg.textContent=`❌ Salah! Username 157 / Password 147 — Lu isi ${u}/${p} — FULL VERSION`}}
+function logout(){document.getElementById('dashScreen').classList.remove('active');document.getElementById('loginScreen').classList.add('active')}
+function joinChannel(){window.open(channelLink,'_blank')}
+function openWA(t){const pesan=encodeURIComponent(t||'Halo min dilzNoelz bisnis FULL');window.open(`https://wa.me/${waNumber}?text=${pesan}`,'_blank')}
+function buy(i){const pesan=encodeURIComponent(`Halo min dilzNoelz 👋 Mau order FULL: *${i}* Username:157 Harga 15-20k kan min? Payment ya min — Terimakasih 😇 — FULL VERSION BUKAN SEDIKIT`);window.open(`https://wa.me/${waNumber}?text=${pesan}`,'_blank')}
+function initFeatures(){if(navigator.getBattery){navigator.getBattery().then(b=>{const upd=()=>{document.getElementById('batrai').textContent=Math.round(b.level*100)+'%';document.getElementById('batraiStatus').textContent=b.charging?'Charging ⚡ FULL':'Good FULL'};upd();b.addEventListener('levelchange',upd)})}const conn=navigator.connection;if(conn){document.getElementById('network').textContent=(conn.effectiveType||'WiFi').toUpperCase()+' FULL'}}
+const audio=document.getElementById('audioPlayer');let isPlaying=false;
+function playMusic(){audio.volume=0.7;audio.play().then(()=>{isPlaying=true}).catch(()=>{})}
+function toggleMusic(){if(isPlaying){audio.pause();isPlaying=false;document.getElementById('musicBtn').textContent='▶️'}else{playMusic();isPlaying=true;document.getElementById('musicBtn').textContent='⏸️'}}
+document.getElementById('pass').addEventListener('keypress',e=>{if(e.key==='Enter')login()})
+</script></body></html>
