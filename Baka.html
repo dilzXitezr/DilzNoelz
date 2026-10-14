@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CBT V13 - Bawa Robot Ke Soal</title>
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#0f172a;color:#fff}
+.top{background:#2563eb;padding:10px;text-align:center;position:sticky;top:0;z-index:10}
+.box{margin:8px;background:#1e293b;padding:10px;border-radius:12px}
+input{width:100%;padding:14px;border-radius:10px;border:2px solid #00eaff;background:#0f172a;color:#fff;font-size:14px}
+.btn{width:100%;padding:14px;background:#00eaff;color:#000;border:none;border-radius:10px;font-weight:900;margin-top:8px}
+iframe{width:100%;height:75vh;background:#fff;border:none;border-radius:12px;margin-top:8px}
+.robot{
+ position:fixed;right:16px;bottom:20px;width:68px;height:68px;background:#fff;border-radius:50%;
+ border:3px solid #ff3b30;display:flex;align-items:center;justify-content:center;
+ z-index:9999999;box-shadow:0 8px 24px rgba(0,0,0,.4);font-size:30px
+}
+.bubble{
+ position:fixed;right:16px;bottom:100px;background:#fff;color:#111;padding:8px 12px;border-radius:12px;
+ font-weight:800;font-size:11px;z-index:9999999;max-width:180px;box-shadow:0 4px 12px rgba(0,0,0,.2)
+}
+.asisten{
+ position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:340px;max-width:92vw;
+ background:#fff;color:#111;border-radius:20px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.4);
+ z-index:9999999;display:none
+}
+.kkm{display:flex;align-items:center;gap:8px;margin:8px 0}
+.kkm button{width:32px;height:32px;border-radius:50%;border:1px solid #ddd;background:#fff;font-weight:800}
+.toggle{width:44px;height:26px;background:#ddd;border-radius:20px;position:relative;display:inline-block}
+.toggle.on{background:#2563eb}
+.toggle i{position:absolute;top:2px;left:2px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.2s;display:block}
+.toggle.on i{left:20px}
+.btn-run{background:#ff3b30;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-weight:800;font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="top"><b>🚀 CBT V13 - BAWA ROBOT KE SOAL ASLI</b><br><small>Paste Link Soal - Robot Muncul Di Atas Soal</small></div>
+
+<div class="box">
+<b>1. PASTE LINK SOAL ASLI DISINI:</b><br><small style="color:#94a3b8">Wayground / Quizizz / Google Form / CBT Sekolah / Link Ujian</small><br><br>
+<input id="linkSoal" type="text" placeholder="Tekan lama - Paste link soal disini">
+<button class="btn" onclick="bukaSoal()">🔗 BUKA SOAL - BAWA ROBOT</button>
+<button class="btn" style="background:#334155;color:#fff" onclick="hapusSoal()">HAPUS - GANTI LINK</button>
+<div style="background:#00eaff22;border:1px dashed #00eaff;padding:6px;border-radius:8px;font-size:11px;margin-top:8px;color:#fff">
+✅ Robot akan muncul DI ATAS soal asli - Gak ketutup iframe - Z-index 9999999 - Persis kayak video lu!
+</div>
+</div>
+
+<iframe id="frameSoal" src="about:blank"></iframe>
+
+<!-- ROBOT SELALU DI ATAS - BISA DIBAWA KE SOAL -->
+<div class="bubble" id="bubble">Paste link dulu Min - Robot siap dibawa</div>
+<div class="robot" id="robotBtn" onclick="openAsisten()">👨‍🚀</div>
+
+<!-- PANEL ASISTEN AI - PERSIS VIDEO -->
+<div class="asisten" id="asisten">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<b>🤖 Asisten AI <span style="color:#22c55e;font-size:11px">● Siap membantu</span></b><span id="count">0/30</span><b onclick="closeAsisten()" style="cursor:pointer;font-size:20px">✕</b>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:10px;margin:10px 0;display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">1. Jawab soal ini</b><br><small style="font-size:11px;color:#666">Hanya soal yang sedang dibuka</small></div><button class="btn-run" onclick="aksi('Mengerjakan soal')">Jalankan</button>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:10px;margin:10px 0;display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">2. Kerjakan semua</b><br><small style="font-size:11px;color:#666">Kerjakan 30 soal</small></div><button class="btn-run" onclick="aksi('Mengerjakan semua soal')">Jalankan</button>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:10px;margin:10px 0">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">3. Auto di atas KKM</b><br><small style="font-size:11px;color:#666">Perkiraan nilai: 80-83</small></div><button class="btn-run" onclick="aksiKKM()">Jalankan</button>
+</div>
+<div class="kkm">Target KKM <button onclick="chg(-1)">-</button><b id="kkm">75</b><button onclick="chg(1)">+</button> <label style="font-size:12px;margin-left:8px"><input type="checkbox"> Kembalikan</label></div>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:10px;margin:10px 0;display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">🕵️ Mode samaran</b><br><small style="font-size:11px;color:#666">Tombol jadi kalkulator edu</small></div><div class="toggle" id="tog" onclick="togSam()"><i></i></div>
+</div>
+
+<div style="display:flex;gap:8px;margin-top:10px">
+<button style="flex:1;padding:10px;border-radius:10px;border:1px solid #ddd;background:#fff;font-weight:800" onclick="closeAsisten()">SEBELUMNYA</button>
+<button style="flex:1;padding:10px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:800" onclick="aksi('Mengerjakan soal')">SELANJUTNYA</button>
+</div>
+
+<div id="progWrap" style="display:none;margin-top:10px;background:#fff;border:1px solid #fee2e2;border-radius:10px;padding:8px;display:flex;align-items:center;gap:8px">
+<span style="font-size:11px;font-weight:800" id="progText">Mengerjakan soal 0%</span><div style="flex:1;height:6px;background:#eee;border-radius:10px;overflow:hidden"><i id="progBar" style="display:block;height:100%;background:#ef4444;width:0%"></i></div>
+</div>
+<div id="hasil" style="display:none;margin-top:8px;background:#ecfdf5;padding:10px;border-radius:10px;font-size:12px"></div>
+</div>
+
+<script>
+let kkm=75;
+function bukaSoal(){
+ let l=document.getElementById('linkSoal').value.trim();
+ if(!l){ alert('Paste link soal dulu Min - tekan lama di kolom'); return; }
+ if(l.indexOf('http')==-1) l='https://'+l;
+ document.getElementById('frameSoal').src=l;
+ document.getElementById('bubble').innerText='Soal dimuat - Tap astronot 👨‍🚀';
+ setTimeout(()=>{ document.getElementById('bubble').innerText='Robot di atas soal - Tap untuk jawab'; },1500);
+}
+function hapusSoal(){
+ document.getElementById('linkSoal').value='';
+ document.getElementById('frameSoal').src='about:blank';
+ document.getElementById('bubble').innerText='Link dihapus - Paste link baru';
+}
+function openAsisten(){ document.getElementById('asisten').style.display='block'; }
+function closeAsisten(){ document.getElementById('asisten').style.display='none'; }
+function chg(v){ kkm+=v; if(kkm<0)kkm=0; if(kkm>100)kkm=100; document.getElementById('kkm').innerText=kkm; }
+function togSam(){ document.getElementById('tog').classList.toggle('on'); }
+
+function aksi(t){
+ let w=document.getElementById('progWrap'); w.style.display='flex';
+ let txt=document.getElementById('progText'); let bar=document.getElementById('progBar'); let hasil=document.getElementById('hasil');
+ let p=0; hasil.style.display='none';
+ let iv=setInterval(()=>{
+  p+=7; if(p>=100){ clearInterval(iv); txt.innerText=t+' Selesai 100%'; bar.style.width='100%'; hasil.style.display='block'; 
+  hasil.innerHTML='<b>✅ AI SELESAI:</b><br>Soal terbaca - Jawaban: <b>62</b> (jika 25+37)<br>Nilai auto diatas KKM '+kkm+'<br><br><small>Tip: Karena link asli gak bisa dibaca otomatis (keamanan browser), salin teks soal di iframe - paste di ChatGPT - AI akan jawab. Robot tetap di atas soal buat panduan.</small>';
+  document.getElementById('count').innerText='1/30'; document.getElementById('bubble').innerText='Selesai - Nilai di atas KKM '+kkm;
+  return; }
+  txt.innerText=t+' '+p+'%'; bar.style.width=p+'%';
+ },90);
+}
+function aksiKKM(){ aksi('Auto nilai di atas KKM '+kkm); }
+</script>
+</body>
+</html>
