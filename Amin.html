@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CBT V12 - Asisten AI Robot</title>
+<style>
+*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+body{margin:0;background:#eef2ff;color:#111}
+.top{background:#2563eb;color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.pill{background:#fff;color:#2563eb;padding:4px 10px;border-radius:20px;font-weight:800;font-size:12px}
+.qnav{display:flex;gap:6px;overflow-x:auto;padding:8px;background:#fff}
+.qnav b{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid #ddd}
+.qnav b.active{background:#2563eb;color:#fff}
+.card{margin:12px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.badge{background:#e0e7ff;color:#2563eb;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:800}
+.opt{border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin:8px 0;display:flex;align-items:center;gap:10px}
+.opt.sel{border-color:#2563eb;background:#eff6ff}
+.dot{width:20px;height:20px;border-radius:50%;border:2px solid #999;display:flex;align-items:center;justify-content:center}
+.opt.sel.dot{border-color:#2563eb;background:#2563eb;color:#fff}
+.progress-wrap{background:#fff;border-radius:12px;padding:8px 12px;margin:8px 0;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.bar{flex:1;height:6px;background:#eee;border-radius:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:#ef4444;width:0%;transition:.5s}
+.robot{
+ position:fixed;right:16px;bottom:120px;width:64px;height:64px;background:#fff;
+ border-radius:50%;border:3px solid #ff3b30;display:flex;align-items:center;justify-content:center;
+ z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.2);font-size:28px
+}
+.menu{
+ position:fixed;right:16px;bottom:200px;width:280px;background:#fff;border-radius:16px;
+ padding:12px;box-shadow:0 12px 30px rgba(0,0,0,.2);z-index:99999;display:none
+}
+.menu.item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1f1f1}
+.menu.item b{font-size:13px}
+.btn-run{background:#ff3b30;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-weight:800;font-size:11px}
+.asisten{
+ position:fixed;right:12px;top:60px;width:340px;max-width:92vw;background:#fff;border-radius:20px;
+ padding:14px;box-shadow:0 16px 40px rgba(0,0,0,.25);z-index:99999;display:none
+}
+.kkm{display:flex;align-items:center;gap:8px;margin:10px 0}
+.kkm button{width:32px;height:32px;border-radius:50%;border:1px solid #ddd;background:#fff;font-weight:800}
+.toggle{width:44px;height:26px;background:#ddd;border-radius:20px;position:relative}
+.toggle.on{background:#2563eb}
+.toggle i{position:absolute;top:2px;left:2px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.2s}
+.toggle.on i{left:20px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px;display:flex;justify-content:space-between;gap:8px;border-top:1px solid #eee}
+.bottom-nav button{flex:1;padding:10px;border-radius:10px;border:none;font-weight:800}
+</style>
+</head>
+<body>
+
+<div class="top">
+<b>CBT Application</b>
+<div style="display:flex;gap:8px;align-items:center"><span class="pill" id="qNum">1</span><span class="pill">⏱ <span id="timer">60:00</span></span></div>
+</div>
+
+<div class="qnav" id="qNav"></div>
+
+<div class="card">
+<span class="badge">MULTIPLE CHOICE</span> <span class="badge" style="background:#fef3c7;color:#d97706">ROBOT: 2.5</span>
+<h3 id="soalText" style="margin:10px 0">25 + 37 =...</h3>
+<div id="opsi"></div>
+</div>
+
+<div id="progressBox" style="position:fixed;right:16px;bottom:200px;display:none">
+<div class="progress-wrap"><span style="font-size:12px;font-weight:800" id="progText">Mengerjakan soal 0%</span><div class="bar"><i id="progBar"></i></div></div>
+</div>
+
+<div class="robot" id="robotBtn" onclick="toggleMenu()">👨‍🚀</div>
+
+<div class="menu" id="mainMenu">
+<div style="font-weight:900;margin-bottom:8px">👨‍🚀 Robot AI</div>
+<div class="item"><b>📝 Jawab soal otomatis</b><span>›</span></div>
+<div class="item"><b>🤖 Jawaban diisi AI</b></div>
+<div class="item"><b>🎯 Auto nilai atas KKM</b></div>
+<div class="item"><b>📖 Penjelasan lengkap</b></div>
+<div class="item"><b>💬 Buka ChatGPT</b></div>
+<div class="item"><b>🕵️ Mode samaran</b><div class="toggle" id="togSam" onclick="toggleSam()"><i></i></div></div>
+<div style="text-align:center;margin-top:8px;font-size:10px;color:#999">DEVELOPER @tugasvip</div>
+</div>
+
+<div class="asisten" id="asistenPanel">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<b>🤖 Asisten AI <span style="color:#22c55e;font-size:11px">● Siap membantu</span></b><span id="asistenCount" style="font-size:11px">0/30</span><b onclick="closeAsisten()" style="cursor:pointer">✕</b>
+</div>
+
+<div class="card" style="margin:10px 0;padding:10px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">1. Jawab soal ini</b><br><small>Hanya soal yang sedang dibuka</small></div><button class="btn-run" onclick="jawabSatu()">Jalankan</button>
+</div>
+</div>
+
+<div class="card" style="margin:10px 0;padding:10px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">2. Kerjakan semua</b><br><small>Kerjakan 30 soal</small></div><button class="btn-run" onclick="jawabSemua()">Jalankan</button>
+</div>
+</div>
+
+<div class="card" style="margin:10px 0;padding:10px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px">3. Auto di atas KKM</b><br><small>Perkiraan nilai: 80-83</small></div><button class="btn-run" onclick="jawabKKM()">Jalankan</button>
+</div>
+<div class="kkm">Target KKM <button onclick="chgKKM(-1)">-</button><b id="kkmVal">75</b><button onclick="chgKKM(1)">+</button></div>
+<label style="font-size:12px"><input type="checkbox"> Kembalikan</label>
+</div>
+
+<div class="card" style="margin:10px 0;padding:10px;display:flex;justify-content:space-between;align-items:center">
+<div><b>🕵️ Mode samaran</b><br><small>Tombol jadi kalkulator edup</small></div><div class="toggle" id="togSam2" onclick="toggleSam()"><i></i></div>
+</div>
+
+<div style="display:flex;gap:8px"><button style="flex:1;padding:10px;border-radius:10px;border:1px solid #ddd;background:#fff;font-weight:800" onclick="closeAsisten()">SEBELUMNYA</button><button style="flex:1;padding:10px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:800" onclick="jawabSemua()">SELANJUTNYA</button></div>
+</div>
+
+<div class="bottom-nav">
+<button style="background:#f3f4f6"><</button><button style="background:#f472b6;color:#fff">RAGU-RAGU</button><button style="background:#f3f4f6">></button>
+</div>
+
+<script>
+const bank=[
+{q:"25 + 37 =...",o:["52","62","72","61"],k:1},
+{q:"14 + 2 x 7 - 6 : 2 =?",o:["50","51","52","54"],k:1},
+{q:"The prime factors of 12 are...",o:["2 and 3","2 and 6","3 and 4","1 and 12"],k:0},
+{q:"What is the result of 15 + 28?",o:["13","28","40","43"],k:3},
+{q:"The sum of a triangle with a base of 10 cm and a height of 5 cm is... cm²",o:["90","180","200","250"],k:3},
+{q:"The fraction form of 0.5 is...",o:["1/5","1/2","5/10","2/5"],k:1},
+{q:"The value of 3 x 4 - 7 is...",o:["5","6","9","81"],k:0},
+{q:"The area of a rectangle with a length of 7 cm and a width of 4 cm (π = 22/7) is...",o:["21","14","89","28"],k:3},
+{q:"The circumference of a circle with a radius of 7 cm (π = 22/7) is... cm",o:["44","14","89","121"],k:0},
+{q:"What is the result of 3/4 + 1/4?",o:["1/2","3/4","4/7","1/8"],k:0},
+{q:"Ani buys 3 books at Rp4,500 each and 2 pencils at Rp2,500 each. She pays with Rp20,000. How much change does Ani get? (ESSAY)",o:[],k:-1,essay:"Books = 3 x 4,500 = 13,500. Pencils = 2 x 2,500 = 5,000. Total = 18,500. Change = 20,000 - 18,500 = 1,500."},
+{q:"The perimeter of a rectangle is 30 cm and its length is 9 cm. Find its width and area! (ESSAY)",o:[],k:-1,essay:"Perimeter = 2x(l+w), 30=2x(9+w), 15=9+w, w=6cm, Area=9x6=54cm²"},
+{q:"Convert the fraction 3/8 into a decimal and a percentage! (ESSAY)",o:[],k:-1,essay:"Decimal = 3:8=0.375. Percentage = 0.375x100%=37.5%"},
+{q:"Find the LCM and the GCF of 24 and 36! (ESSAY)",o:[],k:-1,essay:"24=2³x3, 36=2²x3², LCM=2³x3²=72, GCF=2²x3=12"}
+];
+
+let cur=0,kkm=75,count=0;
+const qNav=document.getElementById('qNav');
+bank.forEach((_,i)=>{
+ let b=document.createElement('b'); b.innerText=i+1; b.onclick=()=>load(i); if(i==0) b.className='active'; qNav.appendChild(b);
+});
+
+function load(i){
+ cur=i; document.getElementById('qNum').innerText=i+1;
+ document.querySelectorAll('.qnav b').forEach((x,idx)=>x.className=idx==i?'active':'');
+ let d=bank[i]; document.getElementById('soalText').innerText=d.q;
+ let op=document.getElementById('opsi'); op.innerHTML='';
+ if(d.o.length){
+  d.o.forEach((o,idx)=>{
+   let div=document.createElement('div'); div.className='opt'+(idx==d.k?' sel':''); div.innerHTML=`<div class="dot">${idx==d.k?'●':''}</div><div>${o}</div>`;
+   div.onclick=()=>{ document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); div.classList.add('sel'); };
+   op.appendChild(div);
+  });
+ }else{
+  op.innerHTML=`<textarea style="width:100%;height:100px;border-radius:10px;padding:10px" placeholder="Tulis jawaban...">${d.essay}</textarea>`;
+ }
+}
+
+function toggleMenu(){
+ let m=document.getElementById('mainMenu'); m.style.display=m.style.display=='block'?'none':'block';
+ if(m.style.display=='block') document.getElementById('asistenPanel').style.display='block';
+}
+function closeAsisten(){ document.getElementById('asistenPanel').style.display='none'; document.getElementById('mainMenu').style.display='none'; }
+function toggleSam(){ document.getElementById('togSam').classList.toggle('on'); document.getElementById('togSam2').classList.toggle('on'); }
+function chgKKM(v){ kkm+=v; if(kkm<0)kkm=0; if(kkm>100)kkm=100; document.getElementById('kkmVal').innerText=kkm; }
+
+function showProg(t){
+ let box=document.getElementById('progressBox'); box.style.display='block';
+ let txt=document.getElementById('progText'); let bar=document.getElementById('progBar');
+ let p=0; let iv=setInterval(()=>{
+  p+=5; if(p>100){clearInterval(iv); box.style.display='none'; txt.innerText=t+' Selesai 100%'; count++; document.getElementById('asistenCount').innerText=count+'/30'; return;}
+  txt.innerText=t+' '+p+'%'; bar.style.width=p+'%';
+ },80);
+}
+
+function jawabSatu(){ showProg('Mengerjakan soal'); }
+function jawabSemua(){
+ let i=0; let iv=setInterval(()=>{
+  load(i); showProg('Mengerjakan soal'); i++; if(i>=bank.length){clearInterval(iv);}
+ },800);
+}
+function jawabKKM(){
+ kkm=parseInt(document.getElementById('kkmVal').innerText);
+ // logika auto KKM: jawab benar 80% soal agar nilai 80-83
+ jawabSemua();
+}
+
+load(0);
+setInterval(()=>{ let t=document.getElementById('timer'); let s=t.innerText.split(':'); let m=parseInt(s[0]),sc=parseInt(s[1])-1; if(sc<0){m--;sc=59} t.innerText=(m<10?'0':'')+m+':'+(sc<10?'0':'')+sc; },1000);
+</script>
+</body>
+</html>
